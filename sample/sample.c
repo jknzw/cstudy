@@ -1,6 +1,3 @@
-// ƒtƒ@ƒCƒ‹‚Ö‚Ì‘‚«‚İ
-//   https://ylb.jp/2006b/proc/fileio/fileoutput.html
-//
 
 #include "sample.h"
 
