@@ -1,5 +1,8 @@
 #pragma once
 
+#define MAX_ROW_SIZE 256
+#define MAX_LINE 256
+
 // 関数のプロトタイプ宣言
 // 他のファイルで定義されている関数を使うにはexternを使用する
 extern int printCurrentDir();

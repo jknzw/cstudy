@@ -19,4 +19,3 @@ int printCurrentDir()
 	}
 	return 0;
 }
-

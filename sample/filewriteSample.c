@@ -2,7 +2,6 @@
 //   https://ylb.jp/2006b/proc/fileio/fileoutput.html
 //
 
-
 #include <stdio.h>
 
 // ƒtƒ@ƒCƒ‹‘‚«‚İŠÖ”
