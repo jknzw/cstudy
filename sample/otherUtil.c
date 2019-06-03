@@ -27,7 +27,18 @@ int convertCharArrayToInt(char* text)
 	return num;
 }
 
+// https://docs.microsoft.com/ja-jp/cpp/c-runtime-library/reference/sprintf-s-sprintf-s-l-swprintf-s-swprintf-s-l?view=vs-2019
 int convertIntToCharArray(int num, char text[],int len)
 {
-	return sprintf_s(text, len, "%d", num);
+	int ret = sprintf_s(text, len, "%d", num);
+	if (ret < 0)
+	{
+		// •ÏŠ·ƒGƒ‰[
+		return ret;
+	}
+	else
+	{
+		// ³í
+		return 0;
+	}
 }

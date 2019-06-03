@@ -1,3 +1,8 @@
+//C言語のバグ回避をするための習慣 
+//　読んでおくべし
+//    https://qiita.com/Ki4mTaria/items/b6ab0bcbe9c87d4dc071
+
+
 #include <stdio.h>
 
 // malloc free
@@ -32,6 +37,13 @@ int main(int argc, char* argv[])
 	}
 
 	ret = filereadSample(pInFilePath);
+	if (ret != 0) {
+		// 失敗した場合、後続処理を行わずにreturn
+		printf("ファイル読み込み失敗\r\n");
+		return ret;
+	}
+
+	ret = filereadSample2(pInFilePath);
 	if (ret != 0) {
 		// 失敗した場合、後続処理を行わずにreturn
 		printf("ファイル読み込み失敗\r\n");
