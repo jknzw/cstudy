@@ -20,18 +20,21 @@ int main(int argc, char* argv[])
 	ret = printCurrentDir();
 	if (ret != 0) {
 		// 失敗した場合、後続処理を行わずにreturn
+		printf("カレントディレクトリ取得失敗\r\n");
 		return ret;
 	}
 
 	ret = filewriteSample(pOutFilePath);
 	if (ret != 0) {
 		// 失敗した場合、後続処理を行わずにreturn
+		printf("ファイル書き込み失敗\r\n");
 		return ret;
 	}
 
 	ret = filereadSample(pInFilePath);
 	if (ret != 0) {
 		// 失敗した場合、後続処理を行わずにreturn
+		printf("ファイル読み込み失敗\r\n");
 		return ret;
 	}
 
@@ -45,6 +48,7 @@ int main(int argc, char* argv[])
 	ret = convertIntToCharArray(1000, text, MAX_TEXT_SIZE);
 	if (ret != 0) {
 		// 失敗した場合、後続処理を行わずにreturn
+		printf("文字列変換失敗\r\n");
 		return ret;
 	}
 	printf("%s\r\n", text);
