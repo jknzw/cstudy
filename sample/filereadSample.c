@@ -44,7 +44,7 @@ int filereadSample(char* pInFilePath)
 		// memset‚Å‰Šú‰»‚·‚é–‚à‚Å‚«‚é
 		// memset(line, '\0', sizeof(line));
 
-		while (NULL == fgets(line, sizeof(line), fp))
+		while (NULL != fgets(line, sizeof(line), fp))
 		{
 			idx++;
 			printf("[%d]%s", idx, line);
