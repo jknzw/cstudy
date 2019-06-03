@@ -1,6 +1,6 @@
 #pragma once
 
-#define MAX_ROW_SIZE 256
+#define MAX_TEXT_SIZE 256
 #define MAX_LINE 256
 
 // 関数のプロトタイプ宣言
@@ -8,3 +8,5 @@
 extern int printCurrentDir();
 extern int filewriteSample(char* pOutFilePath);
 extern int filereadSample(char* pInFilePath);
+extern int convertCharArrayToInt(char* text);
+extern void convertIntToCharArray(int num, char text[],int len);

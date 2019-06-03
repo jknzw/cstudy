@@ -1,3 +1,4 @@
+#include <stdio.h>
 
 // malloc free
 #include <stdlib.h>
@@ -34,6 +35,15 @@ int main(int argc, char* argv[])
 		return ret;
 	}
 
-	// 正常終了
+	// 文字列(char型の配列)を数値に変換する
+	int i = convertCharArrayToInt("500");
+	printf("%d\r\n", i);
+
+	// 数値を文字列(char型の配列)に変換する
+	// こんな使い方で良いんだっけ・・・？？？
+	char text[MAX_TEXT_SIZE] = { '\0' };
+	convertIntToCharArray(1000, text, MAX_TEXT_SIZE);
+	printf("%s\r\n", text);
+
 	return ret;
 }

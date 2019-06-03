@@ -14,8 +14,20 @@ int printCurrentDir()
 	}
 	else
 	{
-		printf("カレントディレクトリ[%s]\n", buf);
+		printf("カレントディレクトリ[%s]\r\n", buf);
 		free(buf);
 	}
 	return 0;
+}
+
+int convertCharArrayToInt(char* text)
+{
+	// 文字列を数値に変換する
+	int num = atoi(text);
+	return num;
+}
+
+void convertIntToCharArray(int num, char text[],int len)
+{
+	sprintf_s(text, len, "%d", num);
 }

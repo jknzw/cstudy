@@ -36,10 +36,10 @@ int filereadSample(char* pInFilePath)
 	{
 		// ファイルオープンに成功した場合
 		// EOFまで読み込む
-		int idx = 0;		
+		int idx = 0;
 
 		// 初期化＋宣言
-		char line[MAX_ROW_SIZE] = { '\0' };
+		char line[MAX_TEXT_SIZE] = { '\0' };
 		// memsetで初期化する事もできる
 		// memset(line, '\0', sizeof(line));
 
