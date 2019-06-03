@@ -42,7 +42,11 @@ int main(int argc, char* argv[])
 	// 数値を文字列(char型の配列)に変換する
 	// こんな使い方で良いんだっけ・・・？？？
 	char text[MAX_TEXT_SIZE] = { '\0' };
-	convertIntToCharArray(1000, text, MAX_TEXT_SIZE);
+	ret = convertIntToCharArray(1000, text, MAX_TEXT_SIZE);
+	if (ret != 0) {
+		// 失敗した場合、後続処理を行わずにreturn
+		return ret;
+	}
 	printf("%s\r\n", text);
 
 	return ret;

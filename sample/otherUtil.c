@@ -27,7 +27,7 @@ int convertCharArrayToInt(char* text)
 	return num;
 }
 
-void convertIntToCharArray(int num, char text[],int len)
+int convertIntToCharArray(int num, char text[],int len)
 {
-	sprintf_s(text, len, "%d", num);
+	return sprintf_s(text, len, "%d", num);
 }
