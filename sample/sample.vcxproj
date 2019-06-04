@@ -128,6 +128,7 @@
     <ClCompile Include="filewriteSample.c" />
     <ClCompile Include="otherUtil.c" />
     <ClCompile Include="sample.c" />
+    <ClCompile Include="structSample.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sample.h" />

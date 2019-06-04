@@ -11,3 +11,5 @@ extern int filereadSample(char* pInFilePath);
 extern int filereadSample2(char* pInFilePath);
 extern int convertCharArrayToInt(char* text);
 extern int convertIntToCharArray(int num, char text[],int len);
+
+extern void structSample();

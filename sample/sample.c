@@ -65,5 +65,7 @@ int main(int argc, char* argv[])
 	}
 	printf("%s\r\n", text);
 
+	structSample();
+
 	return ret;
 }
