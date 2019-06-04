@@ -10,8 +10,7 @@ int filewriteSample(char* pOutFileName)
 	int ret = 0;
 
 	// ファイルポインタの初期化
-	FILE _fp = { NULL };
-	FILE* fp = &_fp;
+	FILE* fp;
 
 	// 書き込みモード「w」でファイルを開く。
 	// ファイルが無い場合は新規作成される。

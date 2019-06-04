@@ -10,8 +10,7 @@ int filereadSample(char* pInFilePath)
 	int ret = 0;
 
 	// ファイルポインタの初期化
-	FILE _fp = { NULL };
-	FILE* fp = &_fp;
+	FILE* fp;
 
 	// 読込みモード「r」でファイルを開く。
 	// ファイルが無い場合はエラー
@@ -63,9 +62,7 @@ int filereadSample2(char* pInFilePath)
 {
 	int ret = 0;
 
-	// ファイルポインタの初期化
-	FILE _fp = { NULL };
-	FILE* fp = &_fp;
+	FILE* fp;
 
 	// 読込みモード「r」でファイルを開く。
 	errno_t errCode = fopen_s(&fp, pInFilePath, "r");
