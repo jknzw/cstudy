@@ -4,16 +4,24 @@
 
 
 #include <stdio.h>
-
-// malloc free
 #include <stdlib.h>
+#include <string.h>
 
 #include "sample.h"
+
+int test1();
 
 // メイン プログラムはここから実行される
 int main(int argc, char* argv[])
 {
 	int ret = -1;
+
+	ret = test1();
+	if (ret != 0) {
+		// 失敗した場合、後続処理を行わずにreturn
+		printf("test1失敗\r\n");
+		return ret;
+	}
 
 	// ファイル指定
 	// 絶対パスを指定する場合、\は\\にする必要がある
@@ -68,4 +76,28 @@ int main(int argc, char* argv[])
 	structSample();
 
 	return ret;
+}
+
+int test1()
+{
+	printf("年齢を入力して下さい。>");
+
+	char str[16] = { '\0' };
+	scanf_s("%s", str, sizeof(str));
+	int nenrei = atoi(str);
+
+	char out[16] = { '\0' };
+
+	if (nenrei >= 20)
+	{
+		strcpy_s(out, sizeof(out), "成人");
+	}
+	else
+	{
+		strcpy_s(out, sizeof(out), "未成年");
+	}
+
+	printf("%s\r\n", out);
+
+	return 0;
 }
