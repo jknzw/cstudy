@@ -22,8 +22,7 @@
 b40
 ******************************/
 
-//型 int　関数名 main　引数 void
-int main(void)
+int main(int argc,char* argv[])
 {
 	//入力ファイルポインタ型の定義
 	FILE* infp;
@@ -39,13 +38,6 @@ int main(void)
 
 	char str[MAX_LEN] = { '\0' };
 	char inText[MAX_LINE][MAX_LEN] = { '\0' };
-
-	char total = 0;
-	char number = 0;
-	char sonota = 0;
-
-	char snumber_cnt = 0;
-	char ssonota_cnt = 0;
 
 	//infp = 入力ファイルオープン(ファイルを読込モードで開く)
 	infp = fopen(infname, "r");
