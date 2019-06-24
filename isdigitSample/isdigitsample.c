@@ -181,5 +181,5 @@ int main(int argc, char* argv[])
 	fclose(infp);
 	fclose(outfp);
 
-	return 0;
+	return SUCCESS;
 }
