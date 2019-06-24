@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 		bool isNum = true;
 		for (int i = 0; i < (int)strlen(str); i++)
 		{
-			if (isdigit((int)str[i])) {
+			if (isdigit(str[i])) {
 				// 数値
 				printf("[%d][%c]は数値\n", i, str[i]);
 			}
@@ -144,7 +144,7 @@ int main(int argc, char* argv[])
 		bool isNum = true;
 		for (int j = 0; j < (int)strlen(inText[i]); j++)
 		{
-			if (isdigit((int)inText[i][j])) {
+			if (isdigit(inText[i][j])) {
 				// 数値
 				printf("[%d][%d][%c]は数値\n", i, j, inText[i][j]);
 			}
