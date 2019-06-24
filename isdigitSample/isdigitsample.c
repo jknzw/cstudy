@@ -11,18 +11,18 @@
 
 /*** IN_FILE サンプルデータ ***
 2
-4
+10
 6
+008
+1a5
 8
 
-10
-008
+4
 13A
-1a5
 b40
 ******************************/
 
-int main(int argc,char* argv[])
+int main(int argc, char* argv[])
 {
 	//入力ファイルポインタ型の定義
 	FILE* infp;
@@ -137,6 +137,40 @@ int main(int argc,char* argv[])
 			// 空要素を見つけたら出力せずに抜ける
 			break;
 		}
+
+		// ▼▼▼ 数値判定処理2 ▼▼▼
+		// ※整数のみの判定。小数を判定する場合は別途小数点の位置や数を判定しないといけない
+		printf("=== ▼▼▼ 数値判定ループ2 ▼▼▼ ===\n");
+		bool isNum = true;
+		for (int j = 0; j < (int)strlen(inText[i]); j++)
+		{
+			if (isdigit((int)inText[i][j])) {
+				// 数値
+				printf("[%d][%d][%c]は数値\n", i, j, inText[i][j]);
+			}
+			else
+			{
+				// 数値以外の文字
+				printf("[%d][%d][%c]は数値以外\n", i, j, inText[i][j]);
+				isNum = false;
+
+				// 数値以外の文字を見つけた判定を抜ける
+				break;
+			}
+		}
+		printf("=== ▲▲▲ 数値判定ループ2 ▲▲▲ ===\n");
+
+		// 結果
+		if (isNum)
+		{
+			printf("%sは数値\n", inText[i]);
+		}
+		else
+		{
+			printf("%sは数値以外\n", inText[i]);
+		}
+		// ▲▲▲ 数値判定処理2 ▲▲▲
+
 		fprintf(outfp, "%s\n", inText[i]);
 	}
 
