@@ -70,6 +70,9 @@ int structsample2()
         return -1;
     }
 
+    // ‰Šú‰»
+    memset(pShain, 0x00, sizeof(HUMAN) * 20);
+
     // ’l‚ðÝ’è
     pShain->id = 0;
     strcpy(pShain->name, "ŽR“c");
