@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "define.h"
+#include "extern.h"
 
 /*** IN_FILE サンプルデータ ***
 2
@@ -27,15 +28,24 @@ int sample1(int argc, char* argv[]);
 int sample2(int argc, char* argv[]);
 bool isstrdigit(char* str);
 
+void printMessage()
+{
+    printf("動かす関数を選択して下さい。\n");
+    printf("1:sample1 文字列の数値判定サンプル\n");
+    printf("2:sample2 文字列の数値判定を関数化したサンプル\n");
+    printf("3:arrayMallocSample 動的メモリのサンプル\n");
+    printf("4:structSample 構造体のサンプル\n");
+    printf("5:structSample2 構造体のポインタのサンプル\n");
+    printf(">");
+}
+
 // メイン
 int main(int argc, char* argv[])
 {
     char str[MAX_LEN] = { '\0' };
 
-    printf("動かす関数を選択して下さい。\n");
-    printf("1:sample1 文字列の数値判定サンプル\n");
-    printf("2:sample2 文字列の数値判定を関数化したサンプル\n");
-    printf(">");
+    // 最初のメッセージ出力
+    printMessage();
 
     // 標準入力から読み込む
     while (fgets(str, sizeof(str), stdin) != NULL) {
@@ -62,6 +72,30 @@ int main(int argc, char* argv[])
                 return ret;
             }
             break;
+        case 3:
+            ret = arrayMallocSample();
+            if (ret != 0)
+            {
+                // エラー終了
+                return ret;
+            }
+            break;
+        case 4:
+            ret = structsample();
+            if (ret != 0)
+            {
+                // エラー終了
+                return ret;
+            }
+            break;
+        case 5:
+            ret = structsample2();
+            if (ret != 0)
+            {
+                // エラー終了
+                return ret;
+            }
+            break;
         default:
             endflg = true;
             break;
@@ -75,10 +109,7 @@ int main(int argc, char* argv[])
         else
         {
             // next loop
-            printf("動かす関数を選択して下さい。\n");
-            printf("1:sample1 文字列の数値判定サンプル\n");
-            printf("2:sample2 文字列の数値判定を関数化したサンプル\n");
-            printf(">");
+            printMessage();
         }
     }
 
@@ -88,12 +119,6 @@ int main(int argc, char* argv[])
 // 数値判定サンプル
 int sample1(int argc, char* argv[])
 {
-    //入力ファイルポインタ型の定義
-    FILE* infp;
-
-    //出力ファイルポインタの定義
-    FILE* outfp;
-
     //char文字列を使用してinfnameの中にファイルパスを代入
     char infname[] = IN_FILE_PATH;
 
@@ -103,8 +128,10 @@ int sample1(int argc, char* argv[])
     char str[MAX_LEN] = { '\0' };
     char inText[MAX_LINE][MAX_LEN] = { '\0' };
 
+    // ▼ 入力処理
+
     //infp = 入力ファイルオープン(ファイルを読込モードで開く)
-    infp = fopen(infname, "r");
+    FILE* infp = fopen(infname, "r");
 
     //入力ファイルポインタにファイルが無い場合NULLを返す
     if (infp == NULL) {
@@ -122,7 +149,7 @@ int sample1(int argc, char* argv[])
 
         // fgetsは改行も読み込むため、改行を削除
         // strlenは末尾の\0までの長さを求める
-        int len = strlen(str);
+        int len = (int)strlen(str);
         if (str[len - 1] == '\n')
         {
             str[len - 1] = '\0';
@@ -176,15 +203,19 @@ int sample1(int argc, char* argv[])
         printf("=== ▲▲▲ 1行読み込み処理 ▲▲▲ ===\n");
     }
 
+    //入力ファイルを閉じる
+    fclose(infp);
+
+    // ▲ 入力処理
+    // ▼ 出力処理
+
     //outfp = 出力ファイルオープン(ファイルを書き込みモードで開く)
-    outfp = fopen(outfname, "w");
+    FILE* outfp = fopen(outfname, "w");
 
     //出力ファイルポインタにファイルが無い場合NULLを返す
     if (outfp == NULL) {
         //出力ファイルが開けないエラー表示
         printf("出力ファイルが存在しません\n");
-        //入力ファイルを閉じる
-        fclose(infp);
         //エラー発生の場合-2を返す
         return OUT_FILE_OPEN_ERROR;
     }
@@ -240,10 +271,10 @@ int sample1(int argc, char* argv[])
 
     printf("=== ▲▲▲ 出力処理 ▲▲▲ ===\n");
 
-
     //ファイルを閉じる
-    fclose(infp);
     fclose(outfp);
+
+    // ▲ 出力処理
 
     return SUCCESS;
 }
@@ -251,12 +282,6 @@ int sample1(int argc, char* argv[])
 // 文字列の数値判定を関数化したサンプル
 int sample2(int argc, char* argv[])
 {
-    //入力ファイルポインタ型の定義
-    FILE* infp;
-
-    //出力ファイルポインタの定義
-    FILE* outfp;
-
     //char文字列を使用してinfnameの中にファイルパスを代入
     char infname[] = IN_FILE_PATH;
 
@@ -267,7 +292,7 @@ int sample2(int argc, char* argv[])
     char inText[MAX_LINE][MAX_LEN] = { '\0' };
 
     //infp = 入力ファイルオープン(ファイルを読込モードで開く)
-    infp = fopen(infname, "r");
+    FILE* infp = fopen(infname, "r");
 
     //入力ファイルポインタにファイルが無い場合NULLを返す
     if (infp == NULL) {
@@ -285,7 +310,7 @@ int sample2(int argc, char* argv[])
 
         // fgetsは改行も読み込むため、改行を削除
         // strlenは末尾の\0までの長さを求める
-        int len = strlen(str);
+        int len = (int)strlen(str);
         if (str[len - 1] == '\n')
         {
             str[len - 1] = '\0';
@@ -316,9 +341,10 @@ int sample2(int argc, char* argv[])
 
         printf("=== ▲▲▲ 1行読み込み処理 ▲▲▲ ===\n");
     }
+    fclose(infp);
 
     //outfp = 出力ファイルオープン(ファイルを書き込みモードで開く)
-    outfp = fopen(outfname, "w");
+    FILE* outfp = fopen(outfname, "w");
 
     //出力ファイルポインタにファイルが無い場合NULLを返す
     if (outfp == NULL) {
@@ -361,7 +387,6 @@ int sample2(int argc, char* argv[])
 
 
     //ファイルを閉じる
-    fclose(infp);
     fclose(outfp);
 
     return SUCCESS;

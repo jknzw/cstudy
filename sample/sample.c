@@ -83,7 +83,7 @@ int test1()
 	printf("”N—î‚ð“ü—Í‚µ‚Ä‰º‚³‚¢B>");
 
 	char str[16] = { '\0' };
-	scanf_s("%s", str, sizeof(str));
+	scanf_s("%s", str, (unsigned int)sizeof(str));
 	int nenrei = atoi(str);
 
 	char out[16] = { '\0' };
