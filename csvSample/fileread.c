@@ -59,7 +59,7 @@ int readInputFile(const char* filePath, PERSON* arrPerson, int maxSize)
             , &(arrPerson + i)->def
             , &(arrPerson + i)->spd) == 8)
         {
-            // “Ç‚İ‚ñ‚¾”‚ª7ŒÂ‚Ìê‡‚Í³í
+            // “Ç‚İ‚ñ‚¾”‚ª³í‚Èê‡
             dataCount++;
         }
         else {
