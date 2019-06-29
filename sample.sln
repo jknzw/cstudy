@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "isdigitSample", "isdigitSam
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{2082594A-5B57-44E1-A891-7D70F23B9A08}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "csvSample", "csvSample\csvSample.vcxproj", "{D0503A32-E073-49C3-B156-D528740F4C30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{2082594A-5B57-44E1-A891-7D70F23B9A08}.Release|x64.Build.0 = Release|x64
 		{2082594A-5B57-44E1-A891-7D70F23B9A08}.Release|x86.ActiveCfg = Release|Win32
 		{2082594A-5B57-44E1-A891-7D70F23B9A08}.Release|x86.Build.0 = Release|Win32
+		{D0503A32-E073-49C3-B156-D528740F4C30}.Debug|x64.ActiveCfg = Debug|x64
+		{D0503A32-E073-49C3-B156-D528740F4C30}.Debug|x64.Build.0 = Debug|x64
+		{D0503A32-E073-49C3-B156-D528740F4C30}.Debug|x86.ActiveCfg = Debug|Win32
+		{D0503A32-E073-49C3-B156-D528740F4C30}.Debug|x86.Build.0 = Debug|Win32
+		{D0503A32-E073-49C3-B156-D528740F4C30}.Release|x64.ActiveCfg = Release|x64
+		{D0503A32-E073-49C3-B156-D528740F4C30}.Release|x64.Build.0 = Release|x64
+		{D0503A32-E073-49C3-B156-D528740F4C30}.Release|x86.ActiveCfg = Release|Win32
+		{D0503A32-E073-49C3-B156-D528740F4C30}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
