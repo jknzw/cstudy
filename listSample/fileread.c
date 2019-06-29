@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "define.h"
 #include "struct.h"
+#include "extern.h"
 
 #define LINE_MAX 256
 
@@ -34,7 +35,7 @@ int getFileLineCount(const char* filePath)
 }
 
 // ファイル読込
-int readInputFile(const char* filePath, PERSON* arrPerson, int maxSize)
+int readInputFile(const char* filePath, LIST_PERSON** arrPerson)
 {
     //ファイルオープン
     FILE* fp = fopen(filePath, "r");
@@ -47,34 +48,39 @@ int readInputFile(const char* filePath, PERSON* arrPerson, int maxSize)
 
     // csvデータを読み込み配列に格納
     int dataCount = 0;
-    for (int i = 0; i < maxSize; i++) {
+    while (1) {
+        PERSON person = { 0 };
+
         // ID,名称,Lv,HP,MP,ATK,DEF,SPD
         if (fscanf(fp, "%d,%[^,],%d,%d,%d,%d,%d,%d\n"
-            , &(arrPerson + i)->id
-            , (arrPerson + i)->name
-            , &(arrPerson + i)->lv
-            , &(arrPerson + i)->hp
-            , &(arrPerson + i)->mp
-            , &(arrPerson + i)->atk
-            , &(arrPerson + i)->def
-            , &(arrPerson + i)->spd) == 8)
+            , &person.id
+            , person.name
+            , &person.lv
+            , &person.hp
+            , &person.mp
+            , &person.atk
+            , &person.def
+            , &person.spd) == 8)
         {
             // 読み込んだ数が正常な場合
             printf("%d,%s,%d,%d,%d,%d,%d,%d\n"
-                , (arrPerson + i)->id
-                , (arrPerson + i)->name
-                , (arrPerson + i)->lv
-                , (arrPerson + i)->hp
-                , (arrPerson + i)->mp
-                , (arrPerson + i)->atk
-                , (arrPerson + i)->def
-                , (arrPerson + i)->spd);
+                , person.id
+                , person.name
+                , person.lv
+                , person.hp
+                , person.mp
+                , person.atk
+                , person.def
+                , person.spd);
             dataCount++;
         }
         else {
             //上記以外は読込処理を抜ける
+            printf("break\n");
             break;
         }
+
+        add(arrPerson, person);
     }
 
     fclose(fp);
