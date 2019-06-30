@@ -1,47 +1,30 @@
+// WARNING C4996 抑止
+// https://docs.microsoft.com/ja-jp/cpp/error-messages/compiler-warnings/compiler-warning-level-3-c4996?view=vs-2019
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
+// include
+// 標準ライブラリは <> で
+// 自作ヘッダは "" で囲む
 #include <stdio.h>
 #include "define.h"
 #include "struct.h"
 #include "extern.h"
 
-#define LINE_MAX 256
-
-// ファイルの行数を取得する
-int getFileLineCount(const char* filePath)
+// ファイル読込関数
+//   関数内部でptrPersonListを書き換えるため、LIST_PERSONのポインタのアドレスを引数に設定すること（ポインタのポインタ）
+// filePath      : ファイルパス
+// ptrPersonList : LIST_PERSONのポインタのポインタ
+// return        : 読み込み行数
+int readInputFile(const char* filePath, LIST_PERSON** ptrPersonList)
 {
-    int count = 0;
-
+    // ファイルオープン
     FILE* fp = fopen(filePath, "r");
 
+    // ファイルがオープンできたかチェック
     if (fp == NULL) {
-        printf("%sが存在しません。", filePath);
-        return IN_FILE_OPEN_ERROR;
-    }
-
-    // ファイルを読み込み行数を取得
-    char buf[LINE_MAX] = { '\0' };
-    while (fgets(buf, sizeof(buf), fp) != NULL)
-    {
-        count++;
-    }
-
-    fclose(fp);
-
-    // 読み込んだ行数を返却
-    return count;
-}
-
-// ファイル読込
-int readInputFile(const char* filePath, LIST_PERSON** arrPerson)
-{
-    //ファイルオープン
-    FILE* fp = fopen(filePath, "r");
-
-    if (fp == NULL) {
-        //ファイルが無い場合
+        //ファイルが無い場合エラー
         printf("%sが存在しません。", filePath);
         return IN_FILE_OPEN_ERROR;
     }
@@ -49,8 +32,11 @@ int readInputFile(const char* filePath, LIST_PERSON** arrPerson)
     // csvデータを読み込み配列に格納
     int dataCount = 0;
     while (1) {
+
+        // 構造体の変数を宣言＆0で初期化
         PERSON person = { 0 };
 
+        // ファイルから1行読み込み構造体に格納する
         // ID,名称,Lv,HP,MP,ATK,DEF,SPD
         if (fscanf(fp, "%d,%[^,],%d,%d,%d,%d,%d,%d\n"
             , &person.id
@@ -75,14 +61,17 @@ int readInputFile(const char* filePath, LIST_PERSON** arrPerson)
             dataCount++;
         }
         else {
-            //上記以外は読込処理を抜ける
+            // ファイルの末尾またはフォーマット異常の場合
+            // 正常に読み込めなかった場合は読込処理を抜ける
             printf("break\n");
             break;
         }
 
-        add(arrPerson, person);
+        // LIST_PERSONに追加する
+        add(ptrPersonList, person);
     }
 
+    // ファイルを閉じる
     fclose(fp);
 
     // 読み込んだ行数を返却

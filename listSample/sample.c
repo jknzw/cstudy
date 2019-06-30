@@ -26,10 +26,14 @@ HP 80
 MP 50
 */
 
+// 定数定義
 // ファイルパス定義
 #define IN_FILE_PATH "C:\\work\\input.csv"
 #define OUT_FILE_PATH "C:\\work\\out.txt"
 
+// include
+// 標準ライブラリは <> で
+// 自作ヘッダは "" で囲む
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,10 +41,12 @@ MP 50
 #include "define.h"
 #include "extern.h"
 
+// メイン
 int main(int argc, char* argv[])
 {
     // ファイル名を読み取り専用の変数で宣言する
     const char* inFile = IN_FILE_PATH;
+    const char* outFile = OUT_FILE_PATH;
 
     // List変数をNULLで定義
     LIST_PERSON* listp = NULL;
@@ -48,22 +54,38 @@ int main(int argc, char* argv[])
     printf("▼▼▼ INファイル読込 ▼▼▼\n");
     // ファイルからデータを読み込む
     int inDataCount = readInputFile(inFile, &listp);
+
+    // 読み込んだ件数をチェック
     if (inDataCount < 0)
     {
         // ファイルの読み込みに失敗
+        printf("ファイルの読み込みに失敗しました。\n");
+
+        // メモリ解放
         release(&listp);
+
+        // エラー終了
         return inDataCount;
     }
     printf("▲▲▲ INファイル読込 ▲▲▲\n");
 
     printf("▼▼▼ データ出力処理 ▼▼▼\n");
-    //出力ファイルオープン
-    FILE* outfp = fopen(OUT_FILE_PATH, "w");
+    // 出力ファイルオープン
+    FILE* outfp = fopen(outFile, "w");
+
+    // 出力ファイルオープンエラーチェック
     if (outfp == NULL) {
+        // 出力ファイルが開けなかった場合
         printf("出力ファイルの作成に失敗しました。\n");
+        
+        // メモリ解放
+        release(&listp);
+
+        // エラー終了
         return OUT_FILE_OPEN_ERROR;
     }
 
+    // LIST_PERSONからデータを取り出し出力
     for (LIST_PERSON* now = listp; now != NULL; now = now->next)
     {
         // コンソール出力
@@ -83,6 +105,7 @@ int main(int argc, char* argv[])
     fclose(outfp);
     printf("▲▲▲ データ出力処理 ▲▲▲\n");
 
+    // メモリ解放
     release(&listp);
     return SUCCESS;
 }
